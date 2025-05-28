@@ -1,0 +1,24 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "port": "[%key:common::config_flow::data::port%]",
+          "delimiter": "Delimiter",
+          "type": "Device type"
+        },
+        "data_description": {
+          "port": "Port which should be opened to receive the payloads",
+          "delimiter": "Which character separates the information",
+          "type": "Home, Multi or rare protocol"
+        }
+      }
+    },
+    "error": {
+      "unknown": "[%key:common::config_flow::error::unknown%]"
+    },
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+    }
+  }
+}
