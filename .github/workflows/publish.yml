@@ -20,10 +20,6 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: 💿 Install Dependencies
-        run: pip install -r requirements.txt
-        working-directory: "${{ github.workspace }}/scripts"
-
       - name: 📝 Update manifest version
         run: |
           VERSION="${{ github.event.release.tag_name }}"
