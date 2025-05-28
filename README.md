@@ -4,7 +4,7 @@ Home Assistant integration for ekey home or multi (legacy)
 
 [![Static Badge](https://img.shields.io/badge/HACS-Custom-41BDF5?style=for-the-badge&logo=homeassistantcommunitystore&logoColor=white)](https://github.com/hacs/integration) 
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/klein0r/ha-ekeylegacy/total?style=for-the-badge)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/klein0r/ha-ekeylegacy?style=for-the-badge) [![Discord](https://img.shields.io/discord/1337028866643857429?style=for-the-badge&logo=discord&logoColor=white&label=Discord&color=7289da)](https://discord.gg/rsUHAW3DKz)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/klein0r/ha-ekeylegacy?style=for-the-badge)
 
 ![GitHub Release Date](https://img.shields.io/github/release-date-pre/klein0r/ha-ekeylegacy?style=for-the-badge&label=Latest%20Beta%20Release) [![GitHub Release](https://img.shields.io/github/v/release/klein0r/ha-ekeylegacy?include_prereleases&style=for-the-badge)](https://github.com/klein0r/ha-ekeylegacy/releases)
 
