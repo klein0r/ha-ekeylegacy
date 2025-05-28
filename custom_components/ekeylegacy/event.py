@@ -45,31 +45,45 @@ class EkeyLegacyAuthEvent(EventEntity):
         """Handle the Ekey (legacy) event."""
         parts = message.strip().split(self._conf_delimiter)
 
+        is_successful = False
+
         if self._conf_type == "home" and len(parts) == 6:
             event_data = {
                 "type": parts[0],
-                "user": parts[1],
+                "user": int(parts[1]),
                 "finger": int(parts[2]),
                 "scanner": parts[3],
-                "action": int(parts[4]),
-                "relay": int(parts[5]),
+                "action": parts[4],
+                "relay": parts[5],
             }
-        elif self._conf_type == "multi" and len(parts) == 9:
+
+            if event_data.action == "1"
+                is_successful = True
+
+        elif self._conf_type == "multi" and len(parts) == 10:
             event_data = {
                 "type": parts[0],
-                "user": parts[1],
+                "user": int(parts[1]),
                 "user_name": parts[2].lstrip("-"),
-                "user_status": int(parts[3]),
+                "user_status": parts[3],
                 "finger": int(parts[4]),
-                "relay": int(parts[5]),
+                "relay": parts[5],
                 "scanner": parts[6],
                 "scanner_name": parts[7].lstrip("-"),
-                "action": int(parts[8]) if parts[8].isdigit() else None,
+                "action": parts[8],
+                "digital_input": parts[8],
             }
+
+            if event_data.action == "1"
+                is_successful = True
         else:
             return
 
-        self._trigger_event("authenticated", event_data)
+        if is_successful
+            self._trigger_event("authenticated", event_data)
+        else
+            self._trigger_event("failed", event_data)
+
         self.async_write_ha_state()
 
     async def async_will_remove_from_hass(self) -> None:
