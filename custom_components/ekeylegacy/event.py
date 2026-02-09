@@ -1,6 +1,7 @@
 """Event entity for Ekey (legacy) integration."""
 
 import asyncio
+import logging
 
 from homeassistant.components.event import EventDeviceClass, EventEntity
 from homeassistant.config_entries import ConfigEntry
@@ -11,6 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .const import CONF_DELIMITER, DOMAIN
 
+_LOGGER = logging.getLogger(__name__)
 
 class EkeyLegacyAuthEvent(EventEntity):
     """Representation of a Ekey (legacy) event entity."""
@@ -44,6 +46,11 @@ class EkeyLegacyAuthEvent(EventEntity):
     def async_handle_event(self, message: str) -> None:
         """Handle the Ekey (legacy) event."""
         parts = message.strip().split(self._conf_delimiter)
+
+        _LOGGER.info(
+            "Received event '%s'",
+            message,
+        )
 
         is_successful = False
 
