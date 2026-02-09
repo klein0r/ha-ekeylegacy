@@ -64,7 +64,7 @@ class EkeyLegacyAuthEvent(EventEntity):
                 "relay": parts[5],
             }
 
-            if event_data.action == "1":
+            if event_data["action"] == "1":
                 is_successful = True
 
         elif self._conf_type == "multi" and len(parts) == 10:
@@ -81,7 +81,7 @@ class EkeyLegacyAuthEvent(EventEntity):
                 "digital_input": parts[8],
             }
 
-            if event_data.action == "1":
+            if event_data["action"] == "1":
                 is_successful = True
 
         else:
