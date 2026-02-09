@@ -58,7 +58,7 @@ class EkeyLegacyAuthEvent(EventEntity):
             event_data = {
                 "type": parts[0],
                 "user": int(parts[1]),
-                "finger": int(parts[2]),
+                "finger": parts[2],
                 "scanner": parts[3],
                 "action": parts[4],
                 "relay": parts[5],
@@ -73,7 +73,7 @@ class EkeyLegacyAuthEvent(EventEntity):
                 "user": int(parts[1]),
                 "user_name": parts[2].lstrip("-"),
                 "user_status": parts[3],
-                "finger": int(parts[4]),
+                "finger": parts[4],
                 "relay": parts[5],
                 "scanner": parts[6],
                 "scanner_name": parts[7].lstrip("-"),
