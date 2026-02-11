@@ -57,7 +57,7 @@ class EkeyLegacyAuthEvent(EventEntity):
         if self._conf_type == "home" and len(parts) == 6:
             event_data = {
                 "type": parts[0],
-                "user": int(parts[1]),
+                "user": parts[1].lstrip("0"),
                 "finger": parts[2],
                 "scanner": parts[3],
                 "action": parts[4],
@@ -70,7 +70,7 @@ class EkeyLegacyAuthEvent(EventEntity):
         elif self._conf_type == "multi" and len(parts) == 10:
             event_data = {
                 "type": parts[0],
-                "user": int(parts[1]),
+                "user": parts[1].lstrip("0"),
                 "user_name": parts[2].lstrip("-"),
                 "user_status": parts[3],
                 "finger": parts[4],
