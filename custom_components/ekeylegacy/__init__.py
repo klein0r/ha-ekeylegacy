@@ -8,11 +8,6 @@ from homeassistant.core import HomeAssistant
 
 _PLATFORMS: list[Platform] = [Platform.EVENT]
 
-# TODO Create ConfigEntry type alias with API object
-# Alias name should be prefixed by integration name
-# type New_NameConfigEntry = ConfigEntry[MyApi]  # noqa: F821
-
-
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Ekey (legacy) from a config entry."""
 
