@@ -50,6 +50,39 @@ Example packet: `1_00003_-----JOSEF_1_7_2_80156809150025_-GAR_1_-`
 
 Unlike the home protocol, the multi protocol does not transmit the switched relay. Instead, the key ID is transmitted.
 
+## FAQ
+
+### Can I store the individual event attributes (action, finger, user, user_name, scanner, ...) in separate entities?
+
+The integration exposes the event as a single event entity, and every value from the packet is provided as an attribute of that entity. This keeps the integration simple and lets you access the full context of an event in one place.
+
+If you want each attribute in its own dedicated entity (for example to record and analyze a single value over the long term), you can create [template sensors](https://www.home-assistant.io/integrations/template/) that read the attributes from the event entity. Add the following to your `configuration.yaml` (adjust the entity ID `event.ekey_home` to match your setup and add or remove attributes depending on your protocol):
+
+```yaml
+template:
+  - trigger:
+      - platform: state
+        entity_id: event.ekey_home
+    # Optional: only update on successful access. Remove this condition to
+    # also capture failed attempts (event_type == "failed").
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.event_type == 'authenticated' }}"
+    sensor:
+      - name: "ekey Last User"
+        state: "{{ trigger.to_state.attributes.user }}"
+      - name: "ekey Last User Name"
+        state: "{{ trigger.to_state.attributes.user_name }}"
+      - name: "ekey Last Finger"
+        state: "{{ trigger.to_state.attributes.finger }}"
+      - name: "ekey Last Scanner"
+        state: "{{ trigger.to_state.attributes.scanner }}"
+      - name: "ekey Last Action"
+        state: "{{ trigger.to_state.attributes.action }}"
+```
+
+Using a [state trigger](https://www.home-assistant.io/integrations/template/#trigger-based-template-sensors) (as shown above) makes sure the sensors only update when a new event is received, so their history reflects each individual access. The event entity triggers on both `authenticated` and `failed` events, so the `condition` above limits the sensors to successful access — remove it if you also want to record failed attempts. The available attributes depend on the configured protocol — see the [Event data](#event-data) tables above.
+
 ## License
 
 The MIT License (MIT)
