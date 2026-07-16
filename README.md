@@ -14,6 +14,42 @@ Home Assistant integration for ekey home or multi (legacy)
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=klein0r&repository=ha-ekeylegacy&category=Integration)
 
+## Event data
+
+The integration listens for UDP packets sent by the ekey LAN adapter and triggers an `authenticated` or `failed` event. The packet format depends on the configured protocol.
+
+### ekey home
+
+Example packet: `1_0046_4_80156809150025_1_2`
+
+| Attribute | Example          | Description                                        |
+|-----------|------------------|----------------------------------------------------|
+| `type`    | `1`              | Packet type                                        |
+| `user`    | `46`             | User ID (leading zeros removed)                    |
+| `finger`  | `4`              | Finger ID (`R` if an RFID tag was used)            |
+| `scanner` | `80156809150025` | Serial number of the finger scanner                |
+| `action`  | `1`              | Action (`1` = access granted, `2` = access denied) |
+| `relay`   | `2`              | Switched relay                                     |
+
+### ekey multi
+
+Example packet: `1_00003_-----JOSEF_1_7_2_80156809150025_-GAR_1_-`
+
+| Attribute       | Example          | Description                                        |
+|-----------------|------------------|----------------------------------------------------|
+| `type`          | `1`              | Packet type                                        |
+| `user`          | `3`              | User ID (leading zeros removed)                    |
+| `user_name`     | `JOSEF`          | User name (leading dashes removed)                 |
+| `user_status`   | `1`              | User status                                        |
+| `finger`        | `7`              | Finger ID (`R` if an RFID tag was used)            |
+| `key`           | `2`              | Key ID                                             |
+| `scanner`       | `80156809150025` | Serial number of the finger scanner                |
+| `scanner_name`  | `GAR`            | Scanner name (leading dashes removed)              |
+| `action`        | `1`              | Action (`1` = access granted, `2` = access denied) |
+| `digital_input` | `-`              | Digital input ID                                   |
+
+Unlike the home protocol, the multi protocol does not transmit the switched relay. Instead, the key ID is transmitted.
+
 ## License
 
 The MIT License (MIT)
