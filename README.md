@@ -12,7 +12,7 @@ Home Assistant integration for ekey home or multi (legacy)
 
 ## Setup
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=klein0r&repository=ha-ekeylegacy&category=Integration)
+[![Open your Home Assistant instance and open the Dashboard Assistant repository in the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=klein0r&repository=ha-ekeylegacy&category=Integration)
 
 ## Event data
 
